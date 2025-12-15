@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  # Ollama - Local AI Model (Mistral)
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ai-ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    restart: unless-stopped
+    command: serve
+
+  # FastAPI Backend
+  api:
+    build: .
+    container_name: ai-api
+    ports:
+      - "8000:8000"
+    environment:
+      - OLLAMA_URL=http://ollama:11434
+      - OLLAMA_MODEL=mistral
+      - SECRET_KEY=assignment-secret-key-2024
+      - DATABASE_URL=sqlite:///./ai_workspace.db
+    volumes:
+      - ./app:/app
+      - ./uploads:/app/uploads
+      - ./vector_db:/app/vector_db
+      - ./database:/app/database
+    depends_on:
+      - ollama
+    restart: unless-stopped
+    command: >
+      sh -c "python main.py"
+
+volumes:
+  ollama_data:
