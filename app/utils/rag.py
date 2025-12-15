@@ -174,6 +174,4 @@ Respond naturally and helpfully."""
     
     def delete_document(self, document_id: str):
         """Delete document from vector DB"""
-        # This is simplified - in production, you'd need to delete all chunks
-
         pass
