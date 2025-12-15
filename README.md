@@ -1,57 +1,86 @@
-# AI Workspace Backend Assignment
+AI Workspace Backend
 
-Complete implementation of the AI Workspace Backend assignment using Ollama Mistral (local).
+AI Workspace Backend is a lightweight backend application built using FastAPI and SQLite. It provides core backend functionality for an AI-powered workspace, including user authentication, document management, task tracking, and a basic AI chat assistant.
 
-## 🚀 Features
+This project is designed as an MVP backend suitable for learning, demos, and small-scale deployments.
 
-✅ **Authentication & Workspace Isolation**
-- JWT-based authentication
-- Workspace isolation for user data
-- User roles (user/admin)
+Features
 
-✅ **Knowledge Hub - Document Upload & Indexing**
-- Upload PDF/TXT/MD files
-- Automatic text extraction
-- Intelligent chunking
-- Vector embeddings with Ollama
-- Local storage (no AWS S3)
+User registration and login
 
-✅ **AI Assistant - RAG + Tool Calling**
-- RAG with Ollama Mistral
-- Document search and retrieval
-- AI tool calling (create_task, list_tasks, etc.)
-- Conversation history
+Token-based authentication using HTTP Bearer tokens
 
-✅ **Task Management**
-- Manual task creation
-- AI-generated tasks
-- Task CRUD operations
-- Priority and status management
+Role-based access control (User / Admin)
 
-✅ **Admin APIs**
-- User management
-- AI usage statistics
-- Document reprocessing
+Document upload and listing
 
-## 📦 Tech Stack
+Task creation and task filtering
 
-- **Backend**: FastAPI
-- **Database**: SQLite (instead of PostgreSQL)
-- **Vector DB**: ChromaDB
-- **AI Model**: Ollama Mistral (local, no API keys)
-- **Storage**: Local filesystem (instead of AWS S3)
-- **Authentication**: JWT
-- **Container**: Docker + Docker Compose
+AI-powered chat assistant (rule-based)
 
-## 🛠️ Setup & Installation
+AI-assisted task creation from chat messages
 
-### Prerequisites
-- Docker Desktop installed and running
-- At least 4GB RAM for Ollama
+Admin analytics and user management
 
-### Quick Start
+SQLite database for persistence
 
-1. **Clone and navigate to project**
-```bash
-git clone <repo-url>
-cd ai-assignment
+Technology Stack
+
+Backend Framework: FastAPI
+
+Database: SQLite
+
+Server: Uvicorn
+
+Authentication: Custom Bearer Token
+
+AI Logic: Simple rule-based AI
+
+Data Validation: Pydantic
+
+Authentication
+
+Authentication is handled using HTTP Bearer tokens.
+
+On login, the API returns an access_token
+
+This token must be sent with every protected request:
+
+Authorization: Bearer <access_token>
+
+
+Note: Tokens do not expire and are based on password hashes. This is intended only for MVP/demo purposes.
+
+AI Capabilities
+
+The backend includes a basic AI assistant that:
+
+Responds to simple conversational messages
+
+Detects task-related messages
+
+Automatically creates tasks when triggered
+
+Logs AI tool usage for analytics
+
+The AI is currently rule-based and does not use any external ML or LLM services.
+
+File Uploads
+
+Files are stored locally on the server
+
+Each file is saved with a unique UUID-based name
+
+File metadata is stored in the database
+
+No file size limits or virus scanning are implemented
+
+Admin Access
+
+Admin users can:
+
+View all registered users
+
+Access AI usage statistics
+
+A default admin user is created automatically on first run.
