@@ -53,7 +53,7 @@ def process_document_async(document_id: str, file_path: str, user_id: int, works
     try:
         db = SessionLocal()
         
-        print(f"📄 Processing document: {document_id}")
+        print(f"Processing document: {document_id}")
         
         # Extract text based on file type
         text = ""
@@ -78,3 +78,4 @@ def process_document_async(document_id: str, file_path: str, user_id: int, works
         print(f"Document processing error: {e}")
 
         return False
+
