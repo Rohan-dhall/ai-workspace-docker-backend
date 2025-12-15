@@ -90,11 +90,11 @@ def init_db():
             "INSERT INTO users (username, email, password_hash, role, workspace_id) VALUES (?, ?, ?, ?, ?)",
             ("admin", "admin@example.com", password_hash, "admin", str(uuid.uuid4()))
         )
-        print("✅ Created admin user: admin/admin123")
+        print("Created admin user: admin/admin123")
     
     conn.commit()
     conn.close()
-    print("✅ Database initialized")
+    print("Database initialized")
 
 # Initialize database
 init_db()
@@ -408,7 +408,7 @@ def chat(request: ChatRequest, current_user: dict = Depends(get_current_user)):
             conn.commit()
             conn.close()
             
-            response += f"\n\n✅ Task created: '{title}'"
+            response += f"\n\nTask created: '{title}'"
         except:
             pass
     
@@ -556,6 +556,7 @@ def health():
     }
 
 if __name__ == "__main__":
-    print("🚀 AI Workspace with SQLite Starting...")
-    print(f"📁 Database: {DB_PATH}")
+    print("AI Workspace with SQLite Starting...")
+    print(f"Database: {DB_PATH}")
+
     uvicorn.run(app, host="0.0.0.0", port=8000)
