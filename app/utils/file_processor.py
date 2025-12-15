@@ -3,7 +3,6 @@ from typing import List
 import os
 import sys
 
-# Fix import path
 sys.path.append('/app')
 
 from database import SessionLocal
@@ -70,11 +69,12 @@ def process_document_async(document_id: str, file_path: str, user_id: int, works
         # Chunk text
         chunks = chunk_text(text)
         
-        print(f"✅ Document {document_id} processed: {len(chunks)} chunks")
+        print(f"Document {document_id} processed: {len(chunks)} chunks")
         
         db.close()
         return True
         
     except Exception as e:
-        print(f"❌ Document processing error: {e}")
+        print(f"Document processing error: {e}")
+
         return False
