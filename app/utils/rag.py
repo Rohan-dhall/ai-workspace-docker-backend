@@ -21,7 +21,7 @@ class RAGSystem:
             settings=Settings(anonymized_telemetry=False)
         )
         
-        print(f"✅ RAG System initialized with Ollama ({self.model})")
+        print(f"RAG System initialized with Ollama ({self.model})")
     
     def check_ai_status(self):
         """Check if Ollama is running"""
@@ -96,11 +96,11 @@ Respond naturally and helpfully."""
                     task_title = query.replace("create task", "").replace("Create task", "").strip()
                     if not task_title:
                         task_title = "Task from AI"
-                    ai_response = f"{ai_response}\n\n✅ Task created: '{task_title}'"
+                    ai_response = f"{ai_response}\n\nTask created: '{task_title}'"
                 
                 elif "list tasks" in query.lower() or "my tasks" in query.lower():
                     tools_called.append("list_tasks")
-                    ai_response = f"{ai_response}\n\n📋 Here are your tasks..."
+                    ai_response = f"{ai_response}\n\nHere are your tasks..."
                 
                 elif "document" in query.lower() and "search" in query.lower():
                     tools_called.append("search_documents")
@@ -175,4 +175,5 @@ Respond naturally and helpfully."""
     def delete_document(self, document_id: str):
         """Delete document from vector DB"""
         # This is simplified - in production, you'd need to delete all chunks
+
         pass
