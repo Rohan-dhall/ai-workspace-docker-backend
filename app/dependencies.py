@@ -1,9 +1,9 @@
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.orm import Session
-from database import get_db        # REMOVED "app."
-from models import User            # REMOVED "app."
-from auth import decode_token      # REMOVED "app."
+from database import get_db        
+from models import User           
+from auth import decode_token      
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/login")
 
@@ -32,4 +32,5 @@ def get_current_user(
     if not user.is_active:
         raise HTTPException(status_code=400, detail="Inactive user")
     
+
     return user
