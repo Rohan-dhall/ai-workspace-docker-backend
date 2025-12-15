@@ -1,0 +1,3 @@
+Natural Language Processing (NLP) is a field of AI that helps computers understand human language.
+    Computer Vision enables machines to interpret visual information.
+    Reinforcement Learning is about agents learning from rewards and punishments.

@@ -1,0 +1,7 @@
+Artificial Intelligence and Machine Learning
+    
+    Artificial Intelligence (AI) is the simulation of human intelligence in machines.
+    Machine Learning (ML) is a subset of AI that enables systems to learn from data.
+    Deep Learning uses neural networks for complex pattern recognition.
+    
+    This document is for testing the AI workspace system.
