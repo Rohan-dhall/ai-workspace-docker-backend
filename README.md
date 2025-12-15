@@ -1,86 +1,118 @@
-AI Workspace Backend
+# 🧠 AI Workspace Backend
 
-AI Workspace Backend is a lightweight backend application built using FastAPI and SQLite. It provides core backend functionality for an AI-powered workspace, including user authentication, document management, task tracking, and a basic AI chat assistant.
+AI Workspace Backend is a **lightweight MVP backend** built using **FastAPI** and **SQLite**.  
+It provides essential backend capabilities for an AI-powered workspace, including authentication, document management, task tracking, and a simple AI chat assistant.
 
-This project is designed as an MVP backend suitable for learning, demos, and small-scale deployments.
+This project is ideal for **learning**, **demos**, and **small-scale deployments**.
 
-Features
+---
 
-User registration and login
+## 🚀 Features
 
-Token-based authentication using HTTP Bearer tokens
+### 🔐 Authentication & Authorization
+- User registration and login
+- Token-based authentication using **HTTP Bearer tokens**
+- Role-based access control (**User / Admin**)
+- Default admin user created on first run
 
-Role-based access control (User / Admin)
+### 📄 Document Management
+- File upload support
+- Files stored locally on the server
+- UUID-based unique filenames
+- File metadata stored in SQLite
+- Document listing per user
 
-Document upload and listing
+### ✅ Task Management
+- Create tasks manually
+- Filter tasks by status
+- AI-assisted task creation from chat messages
 
-Task creation and task filtering
+### 🤖 AI Assistant (Rule-Based)
+- Simple conversational responses
+- Detects task-related intent
+- Automatically creates tasks when triggered
+- Logs AI usage for analytics
+- **No external ML or LLM dependencies**
 
-AI-powered chat assistant (rule-based)
+### 📊 Admin Capabilities
+- View all registered users
+- Access AI usage statistics
+- Basic platform analytics
 
-AI-assisted task creation from chat messages
+### 🗄️ Persistence
+- SQLite database
+- Automatic table creation on startup
 
-Admin analytics and user management
+---
 
-SQLite database for persistence
+## 🧱 Technology Stack
 
-Technology Stack
+| Component        | Technology |
+|------------------|------------|
+| Backend          | FastAPI |
+| Database         | SQLite |
+| Server           | Uvicorn |
+| Authentication   | Custom HTTP Bearer Tokens |
+| Validation       | Pydantic |
+| AI Logic         | Rule-based (internal) |
 
-Backend Framework: FastAPI
+---
 
-Database: SQLite
+## 🔐 Authentication Details
 
-Server: Uvicorn
+Authentication is handled using **HTTP Bearer tokens**.
 
-Authentication: Custom Bearer Token
+### Login Flow
+1. User logs in with username and password
+2. API returns an `access_token`
+3. Token must be included in all protected requests
 
-AI Logic: Simple rule-based AI
-
-Data Validation: Pydantic
-
-Authentication
-
-Authentication is handled using HTTP Bearer tokens.
-
-On login, the API returns an access_token
-
-This token must be sent with every protected request:
-
+### Header Format
 Authorization: Bearer <access_token>
 
+> ⚠️ **Note:**  
+> - Tokens do **not expire**
+> - Tokens are derived from password hashes  
+> - This approach is **only for MVP/demo purposes**  
+> - **Not recommended for production**
 
-Note: Tokens do not expire and are based on password hashes. This is intended only for MVP/demo purposes.
+---
 
-AI Capabilities
+## 🤖 AI Capabilities
 
-The backend includes a basic AI assistant that:
+The built-in AI assistant can:
 
-Responds to simple conversational messages
+- Respond to basic conversational inputs
+- Detect task-related commands (e.g., "create a task to...")
+- Automatically create tasks from chat messages
+- Track and log AI interactions for admin analytics
 
-Detects task-related messages
+The AI is **fully rule-based** and does **not** use:
+- External APIs
+- Machine Learning models
+- LLMs (ChatGPT, etc.)
 
-Automatically creates tasks when triggered
+---
 
-Logs AI tool usage for analytics
+## 📁 File Uploads
 
-The AI is currently rule-based and does not use any external ML or LLM services.
+- Files are saved locally on the server
+- Each file is renamed using a **UUID**
+- File metadata is stored in the database
+- No file size limit enforcement
+- No virus or malware scanning
 
-File Uploads
+> ⚠️ Intended for internal use or demos only
 
-Files are stored locally on the server
+---
 
-Each file is saved with a unique UUID-based name
-
-File metadata is stored in the database
-
-No file size limits or virus scanning are implemented
-
-Admin Access
+## 👑 Admin Access
 
 Admin users can:
+- View all registered users
+- Monitor AI assistant usage
+- Access system-level analytics
 
-View all registered users
-
-Access AI usage statistics
-
-A default admin user is created automatically on first run.
+### Default Admin
+- A default admin user is created automatically on first run
+- Credentials can be configured in the source code or environment variables
