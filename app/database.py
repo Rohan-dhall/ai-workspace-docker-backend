@@ -10,7 +10,7 @@ DATABASE_URL = f"sqlite:///{os.path.join(BASE_DIR, '..', 'database', 'ai_workspa
 # Create database directory
 os.makedirs(os.path.join(BASE_DIR, '..', 'database'), exist_ok=True)
 
-print(f"📁 Database path: {DATABASE_URL}")
+print(f"Database path: {DATABASE_URL}")
 
 # Create engine with echo=True to see SQL
 engine = create_engine(
@@ -27,4 +27,5 @@ def get_db():
     try:
         yield db
     finally:
+
         db.close()
